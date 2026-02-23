@@ -14,9 +14,9 @@ export function InteractiveGrid() {
     let width = 0;
     let height = 0;
 
-    const spacing = 25; // Distance between dots
-    const radius = 1.5; // Radius of dots
-    const mouseRadius = 200; // How far the repel effect reaches
+    const spacing = 30; // Distance between dots
+    const radius = 2; // Radius of dots
+    const mouseRadius = 350; // Increased: How far the repel effect reaches
 
     let dots: { x: number; y: number; originX: number; originY: number; vx: number; vy: number }[] = [];
 
@@ -58,7 +58,14 @@ export function InteractiveGrid() {
       mouse.y = -1000;
     };
 
-    window.addEventListener('resize', init);
+    const resizeObserver = new ResizeObserver(() => {
+      init();
+    });
+    
+    if (canvas.parentElement) {
+      resizeObserver.observe(canvas.parentElement);
+    }
+
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('mouseout', handleMouseLeave);
 
@@ -80,30 +87,30 @@ export function InteractiveGrid() {
           const force = (mouseRadius - dist) / mouseRadius;
           const angle = Math.atan2(dy, dx);
           
-          // Push away from mouse
-          const targetX = dot.originX - Math.cos(angle) * force * 40;
-          const targetY = dot.originY - Math.sin(angle) * force * 40;
+          // Push away from mouse (increased distance)
+          const targetX = dot.originX - Math.cos(angle) * force * 60;
+          const targetY = dot.originY - Math.sin(angle) * force * 60;
 
-          dot.vx += (targetX - dot.x) * 0.08;
-          dot.vy += (targetY - dot.y) * 0.08;
+          dot.vx += (targetX - dot.x) * 0.15;
+          dot.vy += (targetY - dot.y) * 0.15;
         } else {
           // Spring back to origin
           const dxOrigin = dot.originX - dot.x;
           const dyOrigin = dot.originY - dot.y;
           
-          dot.vx += dxOrigin * 0.08; // Spring constant
-          dot.vy += dyOrigin * 0.08;
+          dot.vx += dxOrigin * 0.1; // Spring constant
+          dot.vy += dyOrigin * 0.1;
         }
 
         // Friction
-        dot.vx *= 0.75;
-        dot.vy *= 0.75;
+        dot.vx *= 0.65;
+        dot.vy *= 0.65;
 
         dot.x += dot.vx;
         dot.y += dot.vy;
 
         // Color based on distance to mouse
-        let color = 'rgba(209, 213, 219, 0.4)'; // Tailwind gray-300 with opacity
+        let color = 'rgba(209, 213, 219, 0.8)'; // Tailwind gray-300 with higher opacity
         let size = radius;
 
         if (dist < mouseRadius) {
@@ -113,9 +120,9 @@ export function InteractiveGrid() {
           const r = Math.round(209 - (209 - 37) * intensity);
           const g = Math.round(213 - (213 - 99) * intensity);
           const b = Math.round(219 - (219 - 235) * intensity);
-          const a = 0.4 + 0.6 * intensity; // Becomes more opaque
+          const a = 0.8 + 0.2 * intensity; // Becomes fully opaque
           color = `rgba(${r}, ${g}, ${b}, ${a})`;
-          size = radius + intensity * 1.5;
+          size = radius + intensity * 2;
         }
 
         ctx.beginPath();
@@ -130,7 +137,7 @@ export function InteractiveGrid() {
     draw();
 
     return () => {
-      window.removeEventListener('resize', init);
+      resizeObserver.disconnect();
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseout', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
@@ -140,7 +147,7 @@ export function InteractiveGrid() {
   return (
     <canvas
       ref={canvasRef}
-      className="absolute inset-0 w-full h-full pointer-events-none -z-20"
+      className="absolute inset-0 w-full h-full pointer-events-none z-0"
     />
   );
 }
