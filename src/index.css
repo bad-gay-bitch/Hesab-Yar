@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@font-face {
+  font-family: 'IRANYekanX';
+  src: url('https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQqRl0yTYtJsjS0yTdZ3vtriGz7FRLel8NIaEhP') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IRANYekanX';
+  src: url('https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQqAt2vTBCIJ6ptXhiYCcH2zv3eWTk0OMu1FG7Z') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IRANYekanX';
+  src: url('https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQqLCWu5pH6pFgfxS2QAPXHznNmvl0sZY4Vqojc') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IRANYekanX';
+  src: url('https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQqXzBHQrEqtl4ojsDMBxCrZSmdbfYhRAI95L1N') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IRANYekanX';
+  src: url('https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQqDx3NF1YqPLsv4TfhOpJtClz89EgmeNKnFuW6') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IRANYekanX';
+  src: url('https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQqq2IIWvFnDH72uPftwLU0VJijK8YTev1xky54') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IRANYekanX';
+  src: url('https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQqB9msksgXarR30nuV9v5eCADUPqpZLWGkwlxy') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IRANYekanX';
+  src: url('https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQq8uywCOVKAF1wHXnfWumgD50O4yPrBaleVCEp') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IRANYekanX';
+  src: url('https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQq4JZiKUmkwS10rKfhIcWQlnYj7sBz2dU9bqTo') format('woff2');
+  font-weight: 950;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IRANYekanX';
+  src: url('https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQq3FiNGK9qZ6OnvQsBR8IrDLP0uXJKMSbecxNW') format('woff2');
+  font-weight: 1000;
+  font-style: normal;
+}
+
+@theme {
+  --font-sans: "IRANYekanX", ui-sans-serif, system-ui, sans-serif;
+  --color-primary: #1B4F72;
+  --color-primary-light: #2874A6;
+  --color-success: #10B981;
+  --color-danger: #EF4444;
+}
+
+body {
+  font-family: "IRANYekanX", sans-serif;
+  background-color: #F3F4F6;
+  color: #1F2937;
+}
