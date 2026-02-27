@@ -15,10 +15,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="space-y-6">
             <div className="flex items-center gap-2 text-white font-bold text-xl">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
-                ح
-              </div>
-              حساب‌یار هوشمند
+              <img 
+                src="https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQqv65CXlj7uHvF6EQl9RhMxLqdXbArkej48PzC" 
+                alt="حساب یار" 
+                className="w-8 h-8 object-contain"
+                referrerPolicy="no-referrer"
+              />
+              حساب یار
             </div>
             <p className="text-sm leading-relaxed text-gray-400">
               اولین پلتفرم حسابداری هوشمند ایرانی که با استفاده از هوش مصنوعی،
@@ -132,7 +135,7 @@ export function Footer() {
         <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
           <p>
             © {new Date().toLocaleDateString("fa-IR", { year: "numeric" })}{" "}
-            حساب‌یار هوشمند. تمامی حقوق محفوظ است.
+            حساب یار. تمامی حقوق محفوظ است.
           </p>
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-white transition-colors">

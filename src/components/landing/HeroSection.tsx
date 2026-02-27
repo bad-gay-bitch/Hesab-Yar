@@ -55,7 +55,7 @@ export function HeroSection() {
         transition={{ duration: 0.5, delay: 0.3 }}
         className="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed"
       >
-        حساب‌یار یک پلتفرم هوشمند و کاملاً فارسی است که تمام نیازهای مالی و
+        حساب یار یک پلتفرم هوشمند و کاملاً فارسی است که تمام نیازهای مالی و
         مالیاتی شما را بر اساس قوانین ایران پوشش می‌دهد. بدون نیاز به دانش
         حسابداری، امور مالی خود را مدیریت کنید.
       </motion.p>

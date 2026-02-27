@@ -137,7 +137,7 @@ const slides = [
   {
     Animation: SmartManagementAnimation,
     title: "مدیریت هوشمند مالی",
-    description: "با حساب‌یار، تمام امور مالی کسب‌وکار خود را به صورت خودکار و با دقت بالا مدیریت کنید.",
+    description: "با حساب یار، تمام امور مالی کسب‌وکار خود را به صورت خودکار و با دقت بالا مدیریت کنید.",
   },
   {
     Animation: SecurityAnimation,
@@ -238,10 +238,15 @@ export function AuthVisuals() {
 
       {/* Top: App Name */}
       <div className="relative z-20 flex items-center gap-3 text-white">
-        <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center text-white font-bold text-xl backdrop-blur-md border border-white/30 shadow-xl">
-          ح
+        <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur-md border border-white/30 shadow-xl overflow-hidden">
+          <img 
+            src="https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQqv65CXlj7uHvF6EQl9RhMxLqdXbArkej48PzC" 
+            alt="حساب یار" 
+            className="w-full h-full object-contain p-1"
+            referrerPolicy="no-referrer"
+          />
         </div>
-        <span className="text-2xl font-bold tracking-tight">حساب‌یار هوشمند</span>
+        <span className="text-2xl font-bold tracking-tight">حساب یار</span>
       </div>
 
       {/* Middle: Slideshow */}

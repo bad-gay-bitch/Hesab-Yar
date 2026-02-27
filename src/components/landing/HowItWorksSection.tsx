@@ -34,10 +34,10 @@ export function HowItWorksSection() {
             سادگی در استفاده
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            چگونه با حساب‌یار کار کنیم؟
+            چگونه با حساب یار کار کنیم؟
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-            شروع کار با حساب‌یار بسیار ساده است. نیازی به دانش تخصصی حسابداری
+            شروع کار با حساب یار بسیار ساده است. نیازی به دانش تخصصی حسابداری
             ندارید.
           </p>
         </motion.div>

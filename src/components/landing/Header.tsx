@@ -12,10 +12,13 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2 text-primary font-bold text-xl">
-          <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
-            ح
-          </div>
-          حساب‌یار هوشمند
+          <img 
+            src="https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQqv65CXlj7uHvF6EQl9RhMxLqdXbArkej48PzC" 
+            alt="حساب یار" 
+            className="w-8 h-8 object-contain"
+            referrerPolicy="no-referrer"
+          />
+          حساب یار
         </div>
 
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">

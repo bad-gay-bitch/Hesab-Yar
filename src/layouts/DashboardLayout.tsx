@@ -1,4 +1,5 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
+import { motion } from "motion/react";
 import {
   LayoutDashboard,
   Receipt,
@@ -29,55 +30,79 @@ export default function DashboardLayout() {
   return (
     <div className="flex h-screen overflow-hidden bg-gray-50">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-l border-gray-200 flex flex-col hidden md:flex">
-        <div className="h-16 flex items-center px-6 border-b border-gray-200">
+      <motion.aside 
+        initial={{ x: 100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="w-64 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] flex flex-col hidden md:flex z-20"
+      >
+        <div className="h-16 flex items-center px-6">
           <div className="flex items-center gap-2 text-primary font-bold text-xl">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
-              ح
-            </div>
-            حساب‌یار هوشمند
+            <img 
+              src="https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQqv65CXlj7uHvF6EQl9RhMxLqdXbArkej48PzC" 
+              alt="حساب یار" 
+              className="w-8 h-8 object-contain"
+              referrerPolicy="no-referrer"
+            />
+            حساب یار
           </div>
         </div>
 
         <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
-          {sidebarLinks.map((link) => {
+          {sidebarLinks.map((link, index) => {
             const isActive = location.pathname === link.href;
             return (
-              <Link
+              <motion.div
                 key={link.name}
-                to={link.href}
-                className={cn(
-                  "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
-                  isActive
-                    ? "bg-primary/10 text-primary"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                )}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 + index * 0.05, ease: "easeOut" }}
               >
-                <link.icon className={cn("w-5 h-5", isActive ? "text-primary" : "text-gray-400")} />
-                {link.name}
-              </Link>
+                <Link
+                  to={link.href}
+                  className={cn(
+                    "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
+                    isActive
+                      ? "bg-primary/10 text-primary"
+                      : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                  )}
+                >
+                  <link.icon className={cn("w-5 h-5", isActive ? "text-primary" : "text-gray-400")} />
+                  {link.name}
+                </Link>
+              </motion.div>
             );
           })}
         </nav>
 
-        <div className="p-4 border-t border-gray-200">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
+          className="p-4"
+        >
           <button className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-red-50 hover:text-red-600 transition-colors w-full">
             <LogOut className="w-5 h-5 text-gray-400" />
             خروج از حساب
           </button>
-        </div>
-      </aside>
+        </motion.div>
+      </motion.aside>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col overflow-hidden">
+      <main className="flex-1 flex flex-col overflow-hidden relative z-10">
         {/* Header */}
-        <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 shrink-0">
+        <motion.header 
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          className="h-16 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.02)] flex items-center justify-between px-6 shrink-0 relative z-10"
+        >
           <div className="flex items-center gap-4 flex-1">
             <div className="relative w-96 max-w-full hidden sm:block">
               <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
               <Input
                 placeholder="جستجو در تراکنش‌ها، فاکتورها و..."
-                className="pl-3 pr-10 bg-gray-50 border-transparent focus-visible:bg-white"
+                className="pl-3 pr-10"
               />
             </div>
           </div>
@@ -87,11 +112,11 @@ export default function DashboardLayout() {
               <Bell className="w-5 h-5" />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
             </button>
-            <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-medium text-sm border border-primary/30">
+            <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-medium text-sm">
               م‌ک
             </div>
           </div>
-        </header>
+        </motion.header>
 
         {/* Page Content */}
         <div className="flex-1 overflow-y-auto p-6">

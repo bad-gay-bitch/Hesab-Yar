@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { formatCurrency } from "@/lib/utils";
 import { Plus, Search, Filter, ArrowDownRight, ArrowUpRight, MoreVertical, Bot } from "lucide-react";
+import { motion } from "motion/react";
 
 const transactions = [
   { id: 1, title: "فروش نرم‌افزار به شرکت الف", amount: 15000000, type: "income", date: "۱۴۰۲/۰۷/۱۵", category: "فروش محصول", status: "تکمیل شده", aiConfidence: 95 },
@@ -16,9 +17,29 @@ const transactions = [
 export default function TransactionsPage() {
   const [searchTerm, setSearchTerm] = useState("");
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  };
+
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+    <motion.div 
+      variants={containerVariants}
+      initial="hidden"
+      animate="show"
+      className="space-y-6"
+    >
+      <motion.div variants={itemVariants} className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">تراکنش‌ها</h1>
           <p className="text-gray-500 mt-1">مدیریت درآمدها و هزینه‌های کسب‌وکار</p>
@@ -33,11 +54,12 @@ export default function TransactionsPage() {
             ثبت تراکنش جدید
           </Button>
         </div>
-      </div>
+      </motion.div>
 
-      <Card>
-        <CardContent className="p-0">
-          <div className="p-4 border-b border-gray-100 flex flex-col sm:flex-row gap-4 justify-between items-center bg-gray-50/50 rounded-t-xl">
+      <motion.div variants={itemVariants}>
+        <Card>
+          <CardContent className="p-0">
+            <div className="p-4 flex flex-col sm:flex-row gap-4 justify-between items-center bg-gray-50/50 rounded-t-2xl">
             <div className="relative w-full sm:w-96">
               <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
               <Input
@@ -55,7 +77,7 @@ export default function TransactionsPage() {
 
           <div className="overflow-x-auto">
             <table className="w-full text-sm text-right">
-              <thead className="text-xs text-gray-500 bg-gray-50 border-b border-gray-100">
+              <thead className="text-xs text-gray-500 bg-gray-50/80">
                 <tr>
                   <th className="px-6 py-4 font-medium">عنوان تراکنش</th>
                   <th className="px-6 py-4 font-medium">دسته‌بندی (AI)</th>
@@ -65,9 +87,15 @@ export default function TransactionsPage() {
                   <th className="px-6 py-4 font-medium"></th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100">
-                {transactions.map((tx) => (
-                  <tr key={tx.id} className="hover:bg-gray-50/50 transition-colors">
+              <tbody className="space-y-1">
+                {transactions.map((tx, idx) => (
+                  <motion.tr 
+                    key={tx.id} 
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.3 + idx * 0.1 }}
+                    className="hover:bg-gray-50/50 transition-colors"
+                  >
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
                         <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${tx.type === 'income' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
@@ -97,7 +125,7 @@ export default function TransactionsPage() {
                     </td>
                     <td className="px-6 py-4">
                       <span className={`inline-flex items-center px-2 py-1 rounded-md text-xs font-medium ${
-                        tx.status === 'تکمیل شده' ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-yellow-50 text-yellow-700 border border-yellow-200'
+                        tx.status === 'تکمیل شده' ? 'bg-green-50 text-green-700' : 'bg-yellow-50 text-yellow-700'
                       }`}>
                         {tx.status}
                       </span>
@@ -107,13 +135,13 @@ export default function TransactionsPage() {
                         <MoreVertical className="w-4 h-4" />
                       </button>
                     </td>
-                  </tr>
+                  </motion.tr>
                 ))}
               </tbody>
             </table>
           </div>
           
-          <div className="p-4 border-t border-gray-100 flex items-center justify-between text-sm text-gray-500 bg-gray-50 rounded-b-xl">
+          <div className="p-4 flex items-center justify-between text-sm text-gray-500 bg-gray-50/50 rounded-b-2xl">
             <span>نمایش ۱ تا ۵ از ۵۰ تراکنش</span>
             <div className="flex gap-1">
               <Button variant="outline" size="sm" disabled>قبلی</Button>
@@ -122,6 +150,7 @@ export default function TransactionsPage() {
           </div>
         </CardContent>
       </Card>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

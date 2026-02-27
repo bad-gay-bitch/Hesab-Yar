@@ -52,8 +52,13 @@ export function AnimatedDashboard() {
       {/* Sidebar */}
       <div className="w-16 sm:w-48 bg-gray-50 border-l border-gray-200 pt-14 pb-4 px-2 sm:px-3 flex flex-col gap-2 z-10 shrink-0">
         <div className="hidden sm:flex items-center gap-2 px-2 mb-6 text-primary font-bold">
-          <div className="w-6 h-6 rounded bg-primary flex items-center justify-center text-white text-xs">ح</div>
-          حساب‌یار
+          <img 
+            src="https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQqv65CXlj7uHvF6EQl9RhMxLqdXbArkej48PzC" 
+            alt="حساب یار" 
+            className="w-6 h-6 object-contain"
+            referrerPolicy="no-referrer"
+          />
+          حساب یار
         </div>
         {sidebarItems.map((item) => {
           const isActive = item.activeStages.includes(stage);

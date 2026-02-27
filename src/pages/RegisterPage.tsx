@@ -43,10 +43,13 @@ export default function RegisterPage() {
 
           <div className="mb-8">
             <div className="flex items-center gap-2 text-primary font-bold text-2xl mb-6">
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30">
-                ح
-              </div>
-              حساب‌یار هوشمند
+              <img 
+                src="https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQqv65CXlj7uHvF6EQl9RhMxLqdXbArkej48PzC" 
+                alt="حساب یار" 
+                className="w-10 h-10 object-contain"
+                referrerPolicy="no-referrer"
+              />
+              حساب یار
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">ایجاد حساب کاربری</h1>
             <p className="text-gray-500">به هزاران کسب‌وکار ایرانی بپیوندید.</p>
@@ -113,7 +116,7 @@ export default function RegisterPage() {
             </Button>
             
             <p className="text-xs text-center text-gray-500 mt-4">
-              با ثبت‌نام در حساب‌یار، <Link to="#" className="text-primary hover:underline">قوانین و مقررات</Link> را می‌پذیرم.
+              با ثبت‌نام در حساب یار، <Link to="#" className="text-primary hover:underline">قوانین و مقررات</Link> را می‌پذیرم.
             </p>
           </form>
 

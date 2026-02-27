@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Bot, User, Send, Loader2, Sparkles } from "lucide-react";
 import { GoogleGenAI } from "@google/genai";
 import Markdown from "react-markdown";
+import { motion } from "motion/react";
 
 // Initialize Gemini API
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
@@ -20,7 +21,7 @@ export default function AiChatbotPage() {
     {
       id: "1",
       role: "assistant",
-      content: "سلام! من دستیار هوشمند حساب‌یار هستم. چطور می‌توانم در امور مالی و حسابداری به شما کمک کنم؟",
+      content: "سلام! من دستیار هوشمند حساب یار هستم. چطور می‌توانم در امور مالی و حسابداری به شما کمک کنم؟",
     },
   ]);
   const [input, setInput] = useState("");
@@ -54,7 +55,7 @@ export default function AiChatbotPage() {
       const chat = ai.chats.create({
         model: "gemini-3-flash-preview",
         config: {
-          systemInstruction: `شما یک دستیار حسابداری هوشمند و حرفه‌ای به نام "حساب‌یار" هستید که برای کسب‌وکارهای ایرانی طراحی شده‌اید.
+          systemInstruction: `شما یک دستیار حسابداری هوشمند و حرفه‌ای به نام "حساب یار" هستید که برای کسب‌وکارهای ایرانی طراحی شده‌اید.
           شما به زبان فارسی روان و محترمانه صحبت می‌کنید.
           شما با قوانین مالیاتی ایران (مانند مالیات بر ارزش افزوده ۱۰٪، مالیات‌های تکلیفی، معاملات فصلی ماده ۱۶۹) آشنا هستید.
           شما می‌توانید به سوالات حسابداری پاسخ دهید و راهنمایی‌های مالی ارائه کنید.
@@ -88,46 +89,70 @@ export default function AiChatbotPage() {
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  };
+
   return (
-    <div className="h-[calc(100vh-8rem)] flex flex-col space-y-4">
-      <div>
+    <motion.div 
+      variants={containerVariants}
+      initial="hidden"
+      animate="show"
+      className="h-[calc(100vh-8rem)] flex flex-col space-y-4"
+    >
+      <motion.div variants={itemVariants}>
         <h1 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
           <Bot className="w-6 h-6 text-primary" />
           دستیار هوشمند مالی
         </h1>
         <p className="text-gray-500 mt-1">پاسخگوی سوالات حسابداری و تحلیلگر داده‌های مالی شما</p>
-      </div>
+      </motion.div>
 
-      <Card className="flex-1 flex flex-col overflow-hidden border-primary/20 shadow-sm">
-        <CardHeader className="bg-primary/5 border-b border-primary/10 py-4">
+      <motion.div variants={itemVariants} className="flex-1 flex flex-col overflow-hidden">
+        <Card className="flex-1 flex flex-col overflow-hidden shadow-sm h-full">
+          <CardHeader className="bg-primary/5 py-4">
           <CardTitle className="text-lg flex items-center gap-2 text-primary">
             <Sparkles className="w-5 h-5" />
-            چت با حساب‌یار
+            چت با حساب یار
           </CardTitle>
         </CardHeader>
         
         <CardContent className="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50/50">
-          {messages.map((msg) => (
-            <div
+          {messages.map((msg, idx) => (
+            <motion.div
               key={msg.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: idx * 0.1 }}
               className={`flex gap-3 max-w-[80%] ${
                 msg.role === "user" ? "mr-auto flex-row-reverse" : "ml-auto"
               }`}
             >
               <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 ${
+                className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 overflow-hidden ${
                   msg.role === "user"
                     ? "bg-gray-200 text-gray-600"
                     : "bg-primary text-white"
                 }`}
               >
-                {msg.role === "user" ? <User className="w-5 h-5" /> : <Bot className="w-5 h-5" />}
+                {msg.role === "user" ? <User className="w-5 h-5" /> : <img src="https://2oyypouvtv.ufs.sh/f/wnJq8zLM1RQqv65CXlj7uHvF6EQl9RhMxLqdXbArkej48PzC" alt="حساب یار" className="w-full h-full object-contain p-1" referrerPolicy="no-referrer" />}
               </div>
               <div
-                className={`p-3 rounded-2xl text-sm leading-relaxed ${
+                className={`p-3 rounded-2xl text-sm leading-relaxed shadow-sm ${
                   msg.role === "user"
-                    ? "bg-white border border-gray-200 text-gray-800 rounded-tr-sm"
-                    : "bg-primary/10 text-gray-900 rounded-tl-sm border border-primary/20"
+                    ? "bg-white text-gray-800 rounded-tr-sm"
+                    : "bg-primary/10 text-gray-900 rounded-tl-sm"
                 }`}
               >
                 {msg.role === "assistant" ? (
@@ -138,23 +163,27 @@ export default function AiChatbotPage() {
                   msg.content
                 )}
               </div>
-            </div>
+            </motion.div>
           ))}
           {isLoading && (
-            <div className="flex gap-3 max-w-[80%] ml-auto">
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex gap-3 max-w-[80%] ml-auto"
+            >
               <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center shrink-0">
                 <Bot className="w-5 h-5" />
               </div>
-              <div className="p-4 rounded-2xl bg-primary/10 rounded-tl-sm border border-primary/20 flex items-center gap-2">
+              <div className="p-4 rounded-2xl bg-primary/10 rounded-tl-sm shadow-sm flex items-center gap-2">
                 <Loader2 className="w-4 h-4 animate-spin text-primary" />
                 <span className="text-sm text-gray-600">در حال پردازش...</span>
               </div>
-            </div>
+            </motion.div>
           )}
           <div ref={messagesEndRef} />
         </CardContent>
 
-        <div className="p-4 bg-white border-t border-gray-200">
+        <div className="p-4 bg-white">
           <form onSubmit={handleSend} className="flex gap-2">
             <Input
               value={input}
@@ -175,6 +204,7 @@ export default function AiChatbotPage() {
           </div>
         </div>
       </Card>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
