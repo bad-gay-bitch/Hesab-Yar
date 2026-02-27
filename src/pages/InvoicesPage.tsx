@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { formatCurrency } from "@/lib/utils";
 import { Plus, Search, Filter, FileText, Download, Send, MoreHorizontal } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 import { NumberTicker } from "@/components/ui/number-ticker";
 
 const invoices = [
@@ -17,7 +17,7 @@ const invoices = [
 export default function InvoicesPage() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -27,9 +27,9 @@ export default function InvoicesPage() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   return (

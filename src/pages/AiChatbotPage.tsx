@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Bot, User, Send, Loader2, Sparkles } from "lucide-react";
 import { GoogleGenAI } from "@google/genai";
 import Markdown from "react-markdown";
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 
 // Initialize Gemini API
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || '' });
@@ -89,7 +89,7 @@ export default function AiChatbotPage() {
     }
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -99,9 +99,9 @@ export default function AiChatbotPage() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   return (

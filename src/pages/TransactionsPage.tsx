@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
 import { formatCurrency } from "@/lib/utils";
 import { Plus, Search, Filter, ArrowDownRight, ArrowUpRight, MoreVertical, Bot } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 
 const transactions = [
   { id: 1, title: "فروش نرم‌افزار به شرکت الف", amount: 15000000, type: "income", date: "۱۴۰۲/۰۷/۱۵", category: "فروش محصول", status: "تکمیل شده", aiConfidence: 95 },
@@ -17,7 +17,7 @@ const transactions = [
 export default function TransactionsPage() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -27,9 +27,9 @@ export default function TransactionsPage() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   return (

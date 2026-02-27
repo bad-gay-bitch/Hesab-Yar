@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatCurrency, formatNumber } from "@/lib/utils";
 import { ArrowDownRight, ArrowUpRight, TrendingUp, Wallet, CreditCard, Activity } from "lucide-react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { motion } from "motion/react";
+import { motion, Variants } from "motion/react";
 import { NumberTicker } from "@/components/ui/number-ticker";
 
 const data = [
@@ -23,7 +23,7 @@ const recentTransactions = [
 ];
 
 export default function DashboardPage() {
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -33,9 +33,9 @@ export default function DashboardPage() {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   return (

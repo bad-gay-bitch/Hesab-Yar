@@ -179,7 +179,7 @@ const AnimatedText = ({ text, className, delayOffset = 0 }: { text: string, clas
       y: 0,
       scale: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         damping: 20,
         stiffness: 100,
       },
@@ -190,7 +190,7 @@ const AnimatedText = ({ text, className, delayOffset = 0 }: { text: string, clas
       y: -15,
       scale: 0.95,
       transition: {
-        ease: "easeInOut",
+        ease: "easeInOut" as const,
         duration: 0.3
       }
     }
